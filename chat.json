@@ -1,0 +1,86 @@
+{
+    "chat": {
+        "history": [
+            {
+                "time": "2024-11-13 20:21:28",
+                "user": "user",
+                "content": "test"
+            },
+            {
+                "time": "2024-11-13 20:21:41",
+                "user": "ai",
+                "content": "It looks like you just wanted to test if the bot is working. The answer is yes, I am working! Is there anything else I can help you with?"
+            },
+            {
+                "time": "2024-11-13 20:24:36",
+                "user": "user",
+                "content": "test"
+            },
+            {
+                "time": "2024-11-13 20:24:41",
+                "user": "ai",
+                "content": "It looks like you're testing to see if I'm working properly. Is there anything specific you'd like to chat about or ask for help with? I'm here to assist you!"
+            },
+            {
+                "time": "2024-11-13 20:24:47",
+                "user": "user",
+                "content": "Test"
+            },
+            {
+                "time": "2024-11-13 20:24:52",
+                "user": "ai",
+                "content": "It looks like you're testing to make sure I'm working correctly. Is there something specific you'd like to test or talk about? I'm here to help!"
+            },
+            {
+                "time": "2024-11-13 20:26:20",
+                "user": "user",
+                "content": "Test"
+            },
+            {
+                "time": "2024-11-13 20:26:27",
+                "user": "ai",
+                "content": "It looks like you're trying to test if I'm working properly. Well, I'm happy to report that I am!\n\nIs there anything specific you'd like to test or ask about? I'll do my best to help."
+            },
+            {
+                "time": "2024-11-13 20:27:21",
+                "user": "user",
+                "content": "Test"
+            },
+            {
+                "time": "2024-11-13 20:27:27",
+                "user": "ai",
+                "content": "It looks like you're testing to see if I'm working properly. Is there something specific you'd like to chat about or ask for help with? I'm here to assist you!"
+            },
+            {
+                "time": "2024-11-13 20:27:31",
+                "user": "user",
+                "content": "Test"
+            },
+            {
+                "time": "2024-11-13 20:27:36",
+                "user": "ai",
+                "content": "It looks like you're testing to see if I'm working properly. Well, it seems I am! Is there anything else I can help you with?"
+            },
+            {
+                "time": "2024-11-13 20:28:00",
+                "user": "user",
+                "content": "test"
+            },
+            {
+                "time": "2024-11-13 20:28:05",
+                "user": "ai",
+                "content": "It looks like you're just testing to make sure I'm working properly. Is there anything specific you'd like to chat about or ask for help with? I'm here to assist you!"
+            },
+            {
+                "time": "2024-11-13 20:37:21",
+                "user": "user",
+                "content": "Hi was geht"
+            },
+            {
+                "time": "2024-11-13 20:37:31",
+                "user": "ai",
+                "content": "Hallo! Ich bin hier, um dir zu helfen. Wie kann ich dir heute helfen?"
+            }
+        ]
+    }
+}

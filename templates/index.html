@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+
+</head>
+<body>
+    <div class="text" id="content">
+        
+    </div>
+    <form method="POST" action="/chat">
+        <input id="inputfield" type="text" name="text">
+        <input id="input" type="submit" value=">">
+    </form>
+
+    <script>
+        var content = document.getElementById('content');
+        async function renderChatHistory() {
+            const url = "/history";
+            var chatHistory;
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+
+                const json = await response.json();
+                chatHistory = json;
+                console.log(json);
+            } catch (error) {
+                console.error(error.message);
+            }
+
+
+            content.innerHTML = ""
+
+            // Loop through the chat history and create HTML for each message
+            chatHistory.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                
+                // Format the message content
+                messageElement.innerHTML = `
+                    <p><strong>${message.user}</strong> (${message.time}): ${message.content}</p>
+                `;
+                
+                // Append the message to the container
+                content.appendChild(messageElement);
+            });
+        }
+
+    // Call the function to render the chat history
+    setInterval(async () => {
+        await renderChatHistory(); // Use await to ensure the fetch finishes before the next reload
+    }, 200);
+    </script>
+</body>
+</html>
