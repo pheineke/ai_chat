@@ -19,16 +19,23 @@ def thread_main():
 
             add_message(user='user', content=content)
 
-            response = ollama.chat(model='llama3.2', messages=[
-            {
-                'role': 'user',
-                'content': f"{content}",
-            },
-            ])
+            history = get_history_llm() + [
+                    {
+                        'role': 'user',
+                        'content': f"{content}",
+                    },
+                ]
+            
+            print(history)
+
+            response = ollama.chat(
+                model='llama3.2', 
+                messages=history
+            )
 
             response = response['message']['content']
 
-            add_message(user='ai', content=response)
+            add_message(user='assistant', content=response)
         
         time.sleep(1)
 
@@ -51,7 +58,6 @@ def chat():
 
 @app.route("/history", methods=['GET', 'POST'])
 def history():
-    print(get_history())
     return jsonify(get_history())
 
 

@@ -5,6 +5,13 @@ def get_history():
     with open('chat.json', 'r') as f:
         data : dict = json.load(f)
         return data.get('chat').get('history')
+    
+def get_history_llm():
+    with open('chat.json', 'r') as f:
+        data : dict = json.load(f)
+
+    return [{"role": item["role"], "content": item["content"]} for item in data.get('chat', {}).get('history', [])]
+
 
 def add_message(user: str, content: str):
     time = datetime.now()
@@ -12,16 +19,15 @@ def add_message(user: str, content: str):
     # First, open the file in read mode to get the existing data
     with open('chat.json', 'r') as f:
         data: dict = json.load(f)
-        print(data)
 
     chat_history: list = data.get('chat', {}).get('history', [])
 
 
-    # Append the new message to the history
+    # Append the new message to thgit push --set-upstream origin maine history
     chat_history.append(
         {
             "time": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "user": user,
+            "role": user,
             "content": content
         }
     )

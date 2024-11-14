@@ -30,8 +30,8 @@
                 chatHistory.forEach(message => {
                     const messageElement = document.createElement('div');
 
-                    const user = message.user.toString();
-                    const user_class = user === 'ai' ? 'left' : 'right';
+                    const user = message.role.toString();
+                    const user_class = user === 'assistant' ? 'left' : 'right';
                     
                     const messageInfo = document.createElement('div');
                     messageInfo.classList.add('message', 'info', user_class);
@@ -39,7 +39,7 @@
                     messageInfo.innerHTML = `
                         <img class="message pfp" src="${imgSrc}">
                         <div>
-                            ${message.user} <div class="message time">${message.time}</div>
+                            ${user} <div class="message time">${message.time}</div>
                         </div>
                     `;
 
@@ -49,7 +49,6 @@
                     messageContent.classList.add('message', user_class);
 
                     const message_content_parsed = user === 'ai' ? marked.parse(message.content) : message.content;
-
 
                     messageContent.innerHTML = `
                         <div class="bubble">
