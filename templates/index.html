@@ -3,58 +3,69 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="text" id="content">
-        
+    <div class="chat">
+        <div class="chat-container" id="content"></div>
+        <form method="POST" action="/chat" class="chat-input">
+            <input id="inputfield" type="text" name="text" placeholder="Type a message...">
+            <input id="input" type="submit" value=">">
+        </form>
     </div>
-    <form method="POST" action="/chat">
-        <input id="inputfield" type="text" name="text">
-        <input id="input" type="submit" value=">">
-    </form>
+    
 
     <script>
-        var content = document.getElementById('content');
+        const content = document.getElementById('content');
+
         async function renderChatHistory() {
             const url = "/history";
-            var chatHistory;
             try {
                 const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`Response status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`Response status: ${response.status}`);
 
-                const json = await response.json();
-                chatHistory = json;
-                console.log(json);
+                const chatHistory = await response.json();
+                content.innerHTML = "";
+
+                chatHistory.forEach(message => {
+                    const messageElement = document.createElement('div');
+
+                    const user = message.user.toString();
+                    const user_class = user === 'ai' ? 'left' : 'right';
+                    
+                    const messageInfo = document.createElement('div');
+                    messageInfo.classList.add('message', 'info', user_class);
+                    const imgSrc = `/static/${user}_pfp.png`;
+                    messageInfo.innerHTML = `
+                        <img class="message pfp" src="${imgSrc}">
+                        <div>
+                            ${message.user} <div class="message time">${message.time}</div>
+                        </div>
+                    `;
+
+                    messageElement.appendChild(messageInfo);
+
+                    const messageContent = document.createElement('div');
+                    messageContent.classList.add('message', user_class);
+
+                    const message_content_parsed = user === 'ai' ? marked.parse(message.content) : message.content;
+
+
+                    messageContent.innerHTML = `
+                        <div class="bubble">
+                            <div>${message_content_parsed}</div>
+                        </div>
+                    `;
+                    messageElement.appendChild(messageContent);
+
+                    content.appendChild(messageElement);
+                });
             } catch (error) {
                 console.error(error.message);
             }
-
-
-            content.innerHTML = ""
-
-            // Loop through the chat history and create HTML for each message
-            chatHistory.forEach(message => {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message');
-                
-                // Format the message content
-                messageElement.innerHTML = `
-                    <p><strong>${message.user}</strong> (${message.time}): ${message.content}</p>
-                `;
-                
-                // Append the message to the container
-                content.appendChild(messageElement);
-            });
         }
 
-    // Call the function to render the chat history
-    setInterval(async () => {
-        await renderChatHistory(); // Use await to ensure the fetch finishes before the next reload
-    }, 200);
+        setInterval(renderChatHistory, 2000);
     </script>
 </body>
 </html>

@@ -1,24 +1,141 @@
+/* Global Dark Theme */
 body {
-    box-sizing: border-box;
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
-.text {
-    height: 80%;
-    border: 2px solid rgb(9, 255, 0);
-    padding: 10px;
 
-    text-align: center;
+.chat-selection {
+    width: 10%;
+    height: 80vh;
+    overflow-y: auto;
+    border: 1px solid #333;
+    padding: 10px 20px 0 20px;
+    border-radius: 8px;
+    background-color: #1e1e1e;
 }
-#inputfield {
-    border: 2px solid rgb(255, 0, 0);
+
+.chat {
+    width: 90%;
+    max-width: 50%;
+    height: 80vh;
+
+}
+
+/* Chat Container */
+.chat-container {
+    width: 100%;
+    height: 80vh;
+    overflow-y: auto;
+    border: 1px solid #333;
+    padding: 10px 20px 0 20px;
+    border-radius: 8px;
+    background-color: #1e1e1e;
+}
+
+/* Chat Bubbles */
+.message {
+    display: flex;
+    margin: 10px 0;
+}
+
+.message.left {
+    justify-content: flex-start;
+}
+
+.message.right {
+    justify-content: flex-end;
+}
+
+.message.info {
+    padding: 0;
+    width: 90%;
+}
+
+.message.info {
+    color: rgb(170, 170, 170);
+    font-size: 14px;
+    gap: 10px;
+}
+
+.message.pfp {
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+
+}
+
+.bubble {
+    display: flex;
+    
+    max-width: 70%;
     padding: 10px;
+    
+    
+    color: #e0e0e0;
 
-    width: 75%;
+    flex-direction: row;
 
+    font-family: 'Inter', Arial, sans-serif;
+    line-height: 25px;
+}
+
+.left .bubble {
+    /* background-color: #272727; */
+    max-width: 90%;
+
+    padding-left: 50px;
     text-align: left;
 }
-#input {
-    width:  50px;
-    height: 50px;
 
-    width: 20%;
+.right .bubble {
+    border-radius: 15px;
+    background-color: #1b1b1b;
+    box-shadow: rgba(0, 0, 0, 0.30) 0px 6px 12px;
+
+    background-color: #383838;
+    text-align: right;
+}
+
+/* Input Field */
+.chat-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+#inputfield {
+    flex: 1;
+    padding: 12px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    background-color: #333;
+    color: #e0e0e0;
+
+    height: 25px;
+}
+
+#input {
+    width: 50px;
+    height: 50px;
+    border-radius: 25%;
+    border: none;
+    background-color: #5a5a5a;
+    color: #e0e0e0;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#input:hover {
+    background-color: #757575;
 }

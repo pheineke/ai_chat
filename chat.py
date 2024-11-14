@@ -31,3 +31,11 @@ def add_message(user: str, content: str):
         data['chat']['history'] = chat_history
         json.dump(data, f, indent=4)  # Use json.dump to write JSON with indentation
 
+def clear_history():
+    with open('chat.json', 'w') as f:
+        data = {
+            "chat" : {
+                "history" : []
+            }
+        }
+        json.dump(data, f, indent=4)  
